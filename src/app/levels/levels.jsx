@@ -3,8 +3,6 @@ import { Route, Link } from "react-router-dom";
 import { Level } from "./level/level";
 
 const Levels = ({ match: { url } }) => {
-  // url = '/basic-routing', берёт из path Routera выше
-  // `${url}/:level` - :level - называем как хотим и в последущем компоненте можем обратиться через match.params.level 
   return (
     <div>
       <h1>Levels</h1>
