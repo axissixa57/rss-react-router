@@ -2,7 +2,6 @@ import React from "react";
 import { Prompt } from "react-router";
 
 export const Blocking = () => (
-  // Promt component - тоже самое что и браузерный promt, только тут есть подвязки между react Router-ом и этим Promt-ом, чтобы он вызывался при попытке перейти 
   <div>
     <h1>Blocking a transition!</h1>
     <p>
