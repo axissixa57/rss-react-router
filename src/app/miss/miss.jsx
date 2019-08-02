@@ -4,11 +4,6 @@ import NoMatch from "./no-match";
 import { Level } from "../levels/level/level";
 
 export const Miss = ({ match: { url } }) => (
-  // Switch, если бы у нас не было бы его, то все компоненты в Routes отрисовывались бы, кот. подходят под паттерн path (вместо одного route отрисуются ещё несколько)
-  // например, если не указывать Switch то отрисуется 1 роут и последний
-  // а со Switch отрисуется первый совпадающий
-  // атрибут exact - необходим чтобы path полностью match-ился(т.е. совпадал точь в точь с url из match), а не только чтобы он проверял, что какая-то его часть подходит 
-  // <Route component={NoMatch} /> - обрабатывает ошибки с неправильным роутом
   <div>
     <h1>Handling a Missed Route {url}</h1>
     <p>
