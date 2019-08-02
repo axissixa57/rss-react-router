@@ -1,15 +1,26 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  NavLink,
+  Redirect
+} from "react-router-dom";
 import Home from "./home/home";
 import Levels from "./levels/levels";
 import { Blocking } from "./blocking/blocking";
-import { Miss } from './miss/miss';
-import NoMatch from './miss/no-match';
-import { QueryParams } from './query/query';
+import { Miss } from "./miss/miss";
+import NoMatch from "./miss/no-match";
+import { QueryParams } from "./query/query";
+import fakeAuth from "./auth/auth";
+import Login from "./auth/login";
+import Protected from "./auth/protected";
 import "./App.css";
 
 class App extends Component {
   render() {
+    // если пользователь не авторизован - компонент Redirect, перенаправит автоматом по указанному пути
+    // в неём также указан ключ state: { from: location }, необходим чтобы показать окуда мы пришли (url) на Redirect страницу
     return (
       <BrowserRouter>
         <div>
@@ -34,15 +45,40 @@ class App extends Component {
                 Miss
               </NavLink>
             </li>
-            <li><NavLink to="/query-params" activeClassName="active">Query Params</NavLink></li>
+            <li>
+              <NavLink to="/query-params" activeClassName="active">
+                Query Params
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/protected" activeClassName="active">
+                Protected
+              </NavLink>
+            </li>
           </ul>
-
+          
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/levels" component={Levels} />
             <Route path="/blocking" component={Blocking} />
             <Route path="/miss" component={Miss} />
             <Route path="/query-params" component={QueryParams} />
+            <Route path="/login" component={Login} />
+            <Route
+              path="/protected"
+              component={({ location }) =>
+                fakeAuth.isAuthenticated ? (
+                  <Protected />
+                ) : (
+                  <Redirect
+                    to={{
+                      pathname: "/login",
+                      state: { from: location }
+                    }}
+                  />
+                )
+              }
+            />
             <Route component={NoMatch} />
           </Switch>
         </div>

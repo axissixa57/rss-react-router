@@ -3,8 +3,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import { Level } from "../levels/level/level";
 
 export const QueryParams = ({ match: { url } }) => (
-  // можно как через строку передавать to=`${url}/level1?abc=23`, так и через объект 
-  // queries нужны для сохранения передачи параметров по ссылке, если например приложение с кучей фильтров было сохранено при отправке
   <div>
     <h1>Reading the query parameters.</h1>
     <p>Check out the links below to view the queryparams value.</p>
